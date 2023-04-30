@@ -2,11 +2,11 @@
 
 ## Project Description
 
-Artega is a vitual art exhibition app. It is an app that any art lover can enjoy, but it was specifically created for users who may have difficulties attending an art exhibition in person. In creating Artega, our goal was to make the experience of visiting an art exhibition accesible, easy, and enjoyable. With accessiblity in mind, we focused on including large, easy to understand icons for navigation and included a text-to-speech feature for any large blocks of text so users do not have to read large amounts of text to enjoy the app.
+Artega is a virtual art exhibition app. It is an app that any art lover can enjoy, but it was specifically created for users who may have difficulties attending an art exhibition in person. In creating Artega, our goal was to make the experience of visiting an art exhibition accessible, easy, and enjoyable. With accessibility in mind, we focused on including large, easy to understand icons for navigation and included a text-to-speech feature for any large blocks of text so users do not have to read large amounts of text to enjoy the app.
 
 Current features include a virtual exhibition of the Rijksmuseum, which can be enjoyed from the Gallery page. After a user visits the Gallery page, they are able to click on individual pieces of art to obtain more information about that specific piece of art. From the detailed view, a user has the ability to add favorite pieces of art to review again before leaving the virtual exhibition. Additional exhibitions from other museums can be added in future incarnations of the app.
 
-Another feature that can be accessed from the VideoTour page are two collections of art-focused, educational videos: Learn From Masters and Great Art Explained. By allowing users to access these curated videos directly from the app, it takes the guesswork and potential frustration out of having to search through countless videos online to find content that is focused exlusively on learning about and appreciating art. The Learn From Masters collection includes videos dedicated to exploring the works and lives of some of hte greatest artists in history such as Van Gogh and Michelangelo. The Great Art Explained collection includes videos dedicated to exploring some of the world's most iconic and captivating works of art, including the Mona Lisa and Klimt's The Kiss.
+Another feature that can be accessed from the VideoTour page are two collections of art-focused, educational videos: Learn From Masters and Great Art Explained. By allowing users to access these curated videos directly from the app, it takes the guesswork and potential frustration out of having to search through countless videos online to find content that is focused exclusively on learning about and appreciating art. The Learn From Masters collection includes videos dedicated to exploring the works and lives of some of the greatest artists in history such as Van Gogh and Michelangelo. The Great Art Explained collection includes videos dedicated to exploring some of the world's most iconic and captivating works of art, including the Mona Lisa and Klimt's The Kiss.
 
 ## Technologies
 
@@ -43,7 +43,7 @@ In the project directory, you can run:
 
 ### `npm install`
 
-Run `npm install` in the project foler to install dependencies related to Express.
+Run `npm install` in the project folder to install dependencies related to Express.
 
 Go to client folder `cd client` and run `npm install` to install dependencies related to React.
 
@@ -101,7 +101,7 @@ REACT_APP_API_KEY=413c7b6be3msh42fe1d0387adabbp157ab9jsn976f3c951d21
 ## API Routes
 
 We utilized the Rijksmuseum API to obtain data for the Gallery and ArtView. For the Gallery, the route used is `https://www.rijksmuseum.nl/api/en/collection?key=${API_Key}&hasImage=true&p=10.000&ps=100`  
-For the Artview, the route used is `https://www.rijksmuseum.nl/api/en/collection/${params.objectNumber}?key=${API_Key}` and the data used from the API inclues the scLabelLine which provides the title, artist information, materials, and date of creation and the label.description which provides a short description of the piece of art such as subject matter.
+For the Artview, the route used is `https://www.rijksmuseum.nl/api/en/collection/${params.objectNumber}?key=${API_Key}` and the data used from the API includes the scLabelLine which provides the title, artist information, materials, and date of creation and the label.description which provides a short description of the piece of art such as subject matter.
 
 ## Credit statement
 
