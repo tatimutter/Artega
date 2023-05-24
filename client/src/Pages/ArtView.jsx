@@ -14,13 +14,13 @@ function ArtView() {
 	//const [activeTab, setActiveTab] = useState("");
 
 	// API key for the Rijksmuseum API
-	const API_Key = 'IagrCxtB';
+	const apiKey = process.env.API_KEY;
 
 	// Define a function to fetch the artwork data from the API
 	const fetchArtwork = useCallback(async () => {
 		try {
 			const resp = await fetch(
-				`https://www.rijksmuseum.nl/api/en/collection/${params.objectNumber}?key=${API_Key}`
+				`https://www.rijksmuseum.nl/api/en/collection/${params.objectNumber}?key=${apiKey}`
 			);
 			const data = await resp.json();
 			console.log(data);
@@ -29,7 +29,7 @@ function ArtView() {
 		} catch (error) {
 			console.error(error);
 		}
-	}, [API_Key, params.objectNumber]);
+	}, [apiKey, params.objectNumber]);
 
 	// Use the useEffect() hook to fetch the artwork data when the component mounts
 	useEffect(() => {

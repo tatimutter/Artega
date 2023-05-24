@@ -1,5 +1,8 @@
+require('dotenv').config();
+
 var express = require('express');
 var cors = require('cors');
+
 var router = express.Router();
 
 router.use(cors());
@@ -12,8 +15,8 @@ const db = require('../model/helper');
 });
 
 router.get("/collection", async function (req, res, next) {
-  const API_Key = "IagrCxtB";
-  const apiUrl = `https://www.rijksmuseum.nl/api/en/collection?key=${API_Key}&hasImage=true&p=10.000&ps=100`;
+  const apiKey = process.env.API_KEY;
+  const apiUrl = `https://www.rijksmuseum.nl/api/en/collection?key=${apiKey}&hasImage=true&p=10.000&ps=100`;
   try {
     let results = await fetch(apiUrl);
     const data = await results.json();

@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Gallery.css';
-
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import { FiVolume2, FiVolumeX } from 'react-icons/fi';
 import { ImEyePlus } from 'react-icons/im';
+//import { request } from '../../../app';
 
-import 'react-spinner-animated/dist/index.css';
-
-const API_Key = 'IagrCxtB';
-const apiUrl = `https://www.rijksmuseum.nl/api/en/collection?key=${API_Key}&hasImage=true&p=10.000&ps=100`;
+const apiKey = process.env.REACT_APP_API_KEY;
+const apiUrl = `https://www.rijksmuseum.nl/api/en/collection?key=${apiKey}&hasImage=true&p=10.000&ps=100`;
 
 function Gallery({ hidden, setHidden }) {
 	const [collection, setCollection] = useState();

@@ -98,14 +98,14 @@ DB_NAME = art
 
 ## API Routes
 
-We utilized the Rijksmuseum API to obtain data for the Gallery and ArtView. For the Gallery, the route used is `https://www.rijksmuseum.nl/api/en/collection?key=${API_Key}&hasImage=true&p=10.000&ps=100`  
-For the Artview, the route used is `https://www.rijksmuseum.nl/api/en/collection/${params.objectNumber}?key=${API_Key}` and the data used from the API includes the scLabelLine which provides the title, artist information, materials, and date of creation and the label.description which provides a short description of the piece of art such as subject matter.
+We utilized the Rijksmuseum API to obtain data for the Gallery and ArtView. For the Gallery, the route used is `https://www.rijksmuseum.nl/api/en/collection?key=${API_KEY}&hasImage=true&p=10.000&ps=100`  
+For the Artview, the route used is `https://www.rijksmuseum.nl/api/en/collection/${params.objectNumber}?key=${API_KEY}` and the data used from the API includes the scLabelLine which provides the title, artist information, materials, and date of creation and the label.description which provides a short description of the piece of art such as subject matter.
 
 To obtain Rijksmuseum API Key, you will have to sign up to the museum website: https://www.rijksmuseum.nl/en/register?redirectUrl=https://www.rijksmuseum.nl
 You will then have to ask for the key from your profile section: https://www.rijksmuseum.nl/en/rijksstudio/my/profile
 
 - Add your API Key to the `.env` file:
-  - API_Key=YOUR KEY
+  - API_KEY=YOUR_KEY
 
 ## Credit statement
 
