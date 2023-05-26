@@ -104,8 +104,9 @@ For the Artview, the route used is `https://www.rijksmuseum.nl/api/en/collection
 To obtain Rijksmuseum API Key, you will have to sign up to the museum website: https://www.rijksmuseum.nl/en/register?redirectUrl=https://www.rijksmuseum.nl
 You will then have to ask for the key from your profile section: https://www.rijksmuseum.nl/en/rijksstudio/my/profile
 
-- Add your API Key to the `.env` file:
-  - API_KEY=YOUR_KEY
+-Add a new `.env` file, this time to your client folder, containing:
+
+- REACT_APP_API_KEY=YOUR_KEY
 
 ## Credit statement
 

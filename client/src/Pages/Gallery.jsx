@@ -4,15 +4,13 @@ import './Gallery.css';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import { FiVolume2, FiVolumeX } from 'react-icons/fi';
 import { ImEyePlus } from 'react-icons/im';
-//import { request } from '../../../app';
 
 const apiKey = process.env.REACT_APP_API_KEY;
 const apiUrl = `https://www.rijksmuseum.nl/api/en/collection?key=${apiKey}&hasImage=true&p=10.000&ps=100`;
 
-function Gallery({ hidden, setHidden }) {
+function Gallery() {
 	const [collection, setCollection] = useState();
 	const [error, setError] = useState('');
-	//const [hidden, setHidden] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [isSpeaking, setIsSpeaking] = useState(false); // Setting state for whether intro is being spoken or not
 	const introText =
@@ -34,6 +32,7 @@ function Gallery({ hidden, setHidden }) {
 		setIsSpeaking(false);
 	};
 
+	//hook to populate the collection when the page loads
 	useEffect(() => {
 		getCollection();
 	}, []);
