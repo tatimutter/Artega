@@ -15,7 +15,7 @@ const db = require('../model/helper');
 });
 
 router.get("/collection", async function (req, res, next) {
-  const apiKey = process.env.API_KEY;
+  const apiKey = process.env.REACT_APP_API_KEY;
   const apiUrl = `https://www.rijksmuseum.nl/api/en/collection?key=${apiKey}&hasImage=true&p=10.000&ps=100`;
   try {
     let results = await fetch(apiUrl);

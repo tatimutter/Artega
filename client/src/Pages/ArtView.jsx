@@ -11,12 +11,11 @@ function ArtView() {
 	const [artwork, setArtwork] = useState({});
 	const [isReading, setIsReading] = useState(false);
 	const [isFavorite, setIsFavorite] = useState(false);
-	//const [activeTab, setActiveTab] = useState("");
 
 	// API key for the Rijksmuseum API
-	const apiKey = process.env.API_KEY;
+	const apiKey = process.env.REACT_APP_API_KEY;
 
-	// Define a function to fetch the artwork data from the API
+	// Fetching the artwork data from the API
 	const fetchArtwork = useCallback(async () => {
 		try {
 			const resp = await fetch(
@@ -31,7 +30,7 @@ function ArtView() {
 		}
 	}, [apiKey, params.objectNumber]);
 
-	// Use the useEffect() hook to fetch the artwork data when the component mounts
+	// useEffect() hook to fetch the artwork data when the component mounts
 	useEffect(() => {
 		let isMounted = true;
 		fetchArtwork().then((data) => {
@@ -44,7 +43,7 @@ function ArtView() {
 		};
 	}, [fetchArtwork]);
 
-	// Define a function to toggle whether the description is being read out loud
+	// Function to toggle whether the description is being read out loud
 	const toggleReading = () => {
 		if (!isReading) {
 			// Create a new SpeechSynthesisUtterance object and speak the description
@@ -61,7 +60,7 @@ function ArtView() {
 			setIsReading(false);
 		}
 	};
-
+	//Add (and delete) favorite functions
 	const handleAddFavorite = useCallback(() => {
 		const addFavorite = async (artworkData) => {
 			try {
@@ -70,10 +69,12 @@ function ArtView() {
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify(artworkData),
 				};
+
 				let results = await fetch('/favorites', options);
 				let data = await results.json();
 				console.log(data);
 				setIsFavorite(true);
+				console.log(results);
 			} catch (err) {
 				console.log(err);
 			}
@@ -87,24 +88,22 @@ function ArtView() {
 		setIsFavorite(true);
 	}, [artwork, setIsFavorite]);
 
-	/*async function deleteFavorite() {
-    try {
-      let options = {
-        method: "DELETE",
-      };
-      let results = await fetch(
-        `/favorites/${artwork.artObject.objectNumber}`,
-        options
-      );
-      let data = await results.json();
-      console.log(data);
-      setIsFavorite(false);
-    } catch (err) {
-      console.log(err);
-    }
-  }*/
-
-	// ADD AND DELETE FAVORITE BUTTONS NEED TO BE STYLED
+	/* async function deleteFavorite() {
+		try {
+			let options = {
+				method: 'DELETE',
+			};
+			let results = await fetch(
+				`/favorites/${artwork.artObject.objectNumber}`,
+				options
+			);
+			let data = await results.json();
+			console.log(data);
+			setIsFavorite(false);
+		} catch (err) {
+			console.log(err);
+		}
+	} */
 
 	return (
 		// Render the artwork data if it has been fetched

@@ -21,6 +21,7 @@ function FavoritesView() {
 					index === self.findIndex((t) => t.objectNumber === item.objectNumber)
 			);
 			setFavorites(uniqueFavorites);
+			//console.log(uniqueFavorites);
 		} catch (err) {
 			console.log(err);
 		}

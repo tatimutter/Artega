@@ -20,9 +20,9 @@ function Gallery() {
 		const synth = window.speechSynthesis;
 		const introUtterance = new SpeechSynthesisUtterance(introText);
 		introUtterance.onend = () => {
-			setIsSpeaking(false); // Set isSpeaking state to false when intro is finished speaking
+			setIsSpeaking(false); // Set isSpeaking state to false when intro stops being read out loud
 		};
-		setIsSpeaking(true); // Set isSpeaking state to true while intro is speaking
+		setIsSpeaking(true); // Set isSpeaking state to true while intro is read out loud
 		synth.speak(introUtterance);
 	};
 
@@ -32,17 +32,20 @@ function Gallery() {
 		setIsSpeaking(false);
 	};
 
-	//hook to populate the collection when the page loads
+	//Hook to populate the collection when the page loads
 	useEffect(() => {
 		getCollection();
 	}, []);
 
+	//Loading only the first 8 images of the collection
 	const [imgs, setImgs] = useState(8);
 
+	//Loading 8 images more when the button is clicked
 	const handleLoadMore = () => {
 		setImgs(imgs + 8);
 	};
 
+	//Fetching collection AP
 	const getCollection = async () => {
 		try {
 			setLoading(true);
@@ -67,7 +70,7 @@ function Gallery() {
 				<h1>Welcome to the Rijksmuseum!</h1>
 
 				<div className="presentation">
-					<p>{introText}</p>
+					<p>{introText}</p> {/* Intro text to be spoken */}
 					<button
 						style={{
 							backgroundColor: '#F7C815',
@@ -79,8 +82,10 @@ function Gallery() {
 							marginBottom: '20px',
 						}}
 						onClick={speakIntro}
-						disabled={isSpeaking}>
-						{isSpeaking ? 'Speaking...' : 'Click to hear this text'}
+						disabled={isSpeaking} /*Disable button while speaking is ongoing*/
+					>
+						{isSpeaking ? 'Speaking...' : 'Click to hear this text'}{' '}
+						{/* Button's text changes depending on reading action */}
 						<FiVolume2 className="TSS-icon" />
 					</button>
 					{isSpeaking && (
@@ -105,7 +110,7 @@ function Gallery() {
 								columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 4 }}>
 								<Masonry gutter="{{100 rem}}">
 									{collection.slice(0, imgs).map((obj, index) => (
-										/* <div className="col-sm-6 col-lg-4 mb-4"> */
+										/*Link to ArtView page, show the image bigger and with info details*/
 										<Link
 											className="galleryImg card"
 											to={`/ArtView/${obj.objectNumber}`}
@@ -122,6 +127,7 @@ function Gallery() {
 							</ResponsiveMasonry>
 							<br />
 							<div className="LMButton-div">
+								{/* Button to load more images is visible until whole collections is loaded */}
 								{imgs < collection.length && (
 									<button
 										type="button"
