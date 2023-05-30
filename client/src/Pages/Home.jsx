@@ -10,8 +10,8 @@ function Home() {
 	const introText =
 		"Artega is brought by you by the ReTaGa Project. We understand that getting out and about can be a challenge for some, and we believe that everyone deserves the chance to experience the beauty and wonder of art. That's why we have created a virtual space where you can explore the galleries of some museums from the comfort of your own home. Our website is designed with accessibility in mind, to ensure that all people can easily navigate and enjoy the art on display. So come on in, take a virtual stroll through our museums' galleries, and discover a whole new world of art that you may never have had the chance to experience before.";
 
+	// Array of image URLs for the slider
 	const images = [
-		// Array of image URLs for the slider
 		'https://images.pexels.com/photos/208733/pexels-photo-208733.jpeg?auto=compress&cs=tinysrgb&w=600',
 		'https://images.pexels.com/photos/1414467/pexels-photo-1414467.jpeg?auto=compress&cs=tinysrgb&w=600',
 		'https://images.pexels.com/photos/4449429/pexels-photo-4449429.jpeg?auto=compress&cs=tinysrgb&w=600',
@@ -31,8 +31,8 @@ function Home() {
 		arrows: true, // Whether to show arrow buttons to navigate between slides
 	};
 
+	// Function to speak the intro text using the SpeechSynthesis API
 	const speakIntro = () => {
-		// Function to speak the intro text using the SpeechSynthesis API
 		const synth = window.speechSynthesis;
 		const introUtterance = new SpeechSynthesisUtterance(introText);
 		introUtterance.onend = () => {
@@ -67,13 +67,15 @@ function Home() {
 						}}
 						onClick={speakIntro}
 						disabled={isSpeaking}>
-						{isSpeaking ? 'Speaking...' : 'Click to hear this text'}{' '}
+						{/* Button's text changes depending on whether the artwork was added or not to favorites */}
+						{isSpeaking ? 'Speaking...' : 'Click to hear this text'}
 						<FiVolume2 className="TSS-icon" />
 					</button>
+
 					{isSpeaking && (
 						<button
 							style={{
-								backgroundColor: 'red',
+								backgroundColor: '#FF0000',
 								color: 'black',
 								fontSize: '25px',
 								padding: '10px 20px',
@@ -86,20 +88,26 @@ function Home() {
 					)}
 				</div>
 				<Link to="/Gallery">
-					<button
-						style={{
-							backgroundColor: '#EC9704',
-							color: 'black',
-							fontSize: '30px',
-							padding: '10px 20px',
-							border: 'none',
-							borderRadius: '5px',
-						}}>
-						Explore Rijksmuseum!
+					<button className="museum-btn">Explore Rijksmuseum</button>
+				</Link>
+				<img
+					className="museum-img"
+					src="https://cms-assets.jung.de/cms/media/39/3967/980x496/standard/rijksmuseum-amsterdam-16.jpg"
+					alt="Façade of the Rijksmuseum in Amsterdam"
+				/>
+				<br />
+				<Link to="/WcmaGallery">
+					<button className="museum-btn">
+						Explore Williams College Museum of Art
 					</button>
 				</Link>
-				{/* using react splide for creating an image gallery */}
-				<Splide options={options} className="splide-container">
+				<img
+					className="museum-img"
+					src="https://images.squarespace-cdn.com/content/v1/56129554e4b0ece82a73e175/1447361138550-IHLBEQALH74MC781K7GZ/image-asset.jpeg"
+					alt="Garden and façade of the Williams College Museum of Art in Williamstown, Massachusetts"
+				/>
+				{/* using React Splide to create an image gallery */}
+				{/* <Splide options={options} className="splide-container">
 					{images.map((image, index) => (
 						<SplideSlide key={index} style={{ margin: '0 10px' }}>
 							<img
@@ -115,7 +123,7 @@ function Home() {
 							/>
 						</SplideSlide>
 					))}
-				</Splide>
+				</Splide> */}
 			</div>
 		</div>
 	);

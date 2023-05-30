@@ -4,18 +4,15 @@ import './Gallery.css';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import { FiVolume2, FiVolumeX } from 'react-icons/fi';
 import { ImEyePlus } from 'react-icons/im';
-
-const apiKey = process.env.REACT_APP_API_KEY;
-const apiUrl = `https://www.rijksmuseum.nl/api/en/collection?key=${apiKey}&hasImage=true&p=10.000&ps=100`;
+import TtsButton from '../Components/TtsButton';
 
 function Gallery() {
 	const [collection, setCollection] = useState();
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState(false);
 	const [isSpeaking, setIsSpeaking] = useState(false); // Setting state for whether intro is being spoken or not
-	const introText =
-		"The Rijksmuseum in Amsterdam is one of the most renowned museums in the world! Founded in 1800, this museum is dedicated to preserving and showcasing the rich artistic and cultural heritage of the Netherlands, from the Middle Ages to modern times. With over 8,000 objects on display, including masterpieces by famous Dutch artists like Rembrandt, Vermeer, and Van Gogh, the Rijksmuseum offers visitors an unparalleled glimpse into the country's history, culture, and artistic achievements. Join us on this virtual tour and explore the museum's stunning collections and fascinating stories from the comfort of your own home.";
-	const speakIntro = () => {
+	const introText = 'The WCMA is...';
+	/* const speakIntro = () => {
 		// Function to speak the intro text using the SpeechSynthesis API
 		const synth = window.speechSynthesis;
 		const introUtterance = new SpeechSynthesisUtterance(introText);
@@ -30,12 +27,12 @@ function Gallery() {
 		const synth = window.speechSynthesis;
 		synth.cancel();
 		setIsSpeaking(false);
-	};
+	}; */
 
 	//Hook to populate the collection when the page loads
-	useEffect(() => {
+	/* useEffect(() => {
 		getCollection();
-	}, []);
+	}, []); */
 
 	//Loading only the first 8 images of the collection
 	const [imgs, setImgs] = useState(8);
@@ -46,7 +43,7 @@ function Gallery() {
 	};
 
 	//Fetching collection AP
-	const getCollection = async () => {
+	/* const getCollection = async () => {
 		try {
 			setLoading(true);
 			let response = await fetch(apiUrl);
@@ -62,46 +59,16 @@ function Gallery() {
 		} catch (error) {
 			console.log(error.message);
 		}
-	};
+	}; */
 
 	return (
 		<>
 			<div className="gallery container py-5">
-				<h1>Welcome to the Rijksmuseum!</h1>
+				<h1>Welcome to the Williams College Museum of Art!</h1>
 
 				<div className="intro">
-					<p>{introText}</p> {/* Intro text to be spoken */}
-					<button
-						style={{
-							backgroundColor: '#F7C815',
-							color: 'black',
-							fontSize: '25px',
-							padding: '10px 20px',
-							border: 'none',
-							borderRadius: '5px',
-							marginBottom: '20px',
-						}}
-						onClick={speakIntro}
-						disabled={isSpeaking} /*Disable button while speaking is ongoing*/
-					>
-						{isSpeaking ? 'Speaking...' : 'Click to hear this text'}{' '}
-						{/* Button's text changes depending on reading action */}
-						<FiVolume2 className="TSS-icon" />
-					</button>
-					{isSpeaking && (
-						<button
-							style={{
-								backgroundColor: 'red',
-								color: 'black',
-								fontSize: '25px',
-								padding: '10px 20px',
-								border: 'none',
-								borderRadius: '5px',
-							}}
-							onClick={stopReading}>
-							Stop Audio <FiVolumeX className="TSS-icon" />
-						</button>
-					)}
+					<p>{introText}</p>
+					<TtsButton text={introText} />
 				</div>
 				<div className="collection-div">
 					{collection && (

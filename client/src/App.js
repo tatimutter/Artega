@@ -10,6 +10,7 @@ import Footer from './Components/Footer.jsx';
 import FavoritesView from './Pages/FavoritesView.jsx';
 import './App.css';
 import VideoTour from './Pages/VideoTour';
+import WcmaGallery from './Pages/WcmaGallery';
 
 //const BtnContext = createContext(null);
 
@@ -24,6 +25,7 @@ function App() {
 				<Route path="/ArtView/:objectNumber" element={<ArtView />} />
 				<Route path="/VideoTour" element={<VideoTour />} />
 				<Route path="/FavoritesView" element={<FavoritesView />} />
+				<Route path="/WcmaGallery" element={<WcmaGallery />} />
 			</Routes>
 
 			<Footer />

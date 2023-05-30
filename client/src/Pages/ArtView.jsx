@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { FiVolume2, FiVolumeX } from 'react-icons/fi';
+import TtsButton from '../Components/TtsButton';
 
 function ArtView() {
 	// Get the objectNumber from the URL parameter using useParams() hook
@@ -10,6 +11,7 @@ function ArtView() {
 	// Set up state variables for the artwork and whether it is currently being read out loud
 	const [artwork, setArtwork] = useState({});
 	const [isReading, setIsReading] = useState(false);
+
 	const [isFavorite, setIsFavorite] = useState(false);
 
 	// API key for the Rijksmuseum API
@@ -30,19 +32,6 @@ function ArtView() {
 		}
 	}, [apiKey, params.objectNumber]);
 
-	// useEffect() hook to fetch the artwork data when the component mounts
-	useEffect(() => {
-		let isMounted = true;
-		fetchArtwork().then((data) => {
-			// Set the artwork state variable only if the component is still mounted
-			if (isMounted) setArtwork(data);
-		});
-		return () => {
-			// Clean up function to set isMounted to false when the component unmounts
-			isMounted = false;
-		};
-	}, [fetchArtwork]);
-
 	// Function to toggle whether the description is being read out loud
 	const toggleReading = () => {
 		if (!isReading) {
@@ -60,7 +49,21 @@ function ArtView() {
 			setIsReading(false);
 		}
 	};
-	//Add (and delete) favorite functions
+
+	// useEffect() hook to fetch the artwork data when the component mounts
+	useEffect(() => {
+		let isMounted = true;
+		fetchArtwork().then((data) => {
+			// Set the artwork state variable only if the component is still mounted
+			if (isMounted) setArtwork(data);
+		});
+		return () => {
+			// Clean up function to set isMounted to false when the component unmounts
+			isMounted = false;
+		};
+	}, [fetchArtwork]);
+
+	//Add (and delete) favorites - useCallBack to prevent re-rendering
 	const handleAddFavorite = useCallback(() => {
 		const addFavorite = async (artworkData) => {
 			try {
@@ -85,7 +88,7 @@ function ArtView() {
 			title: artwork.artObject.longTitle,
 			imageURL: artwork.artObject.webImage.url,
 		});
-		setIsFavorite(true);
+		//setIsFavorite(true);
 	}, [artwork, setIsFavorite]);
 
 	/* async function deleteFavorite() {
@@ -155,17 +158,18 @@ function ArtView() {
 							<FiVolume2 className="TSS-icon" />
 						</button>
 					</div>
-
+					{/* Button to add artwork to favorites */}
 					<button
 						onClick={handleAddFavorite}
 						style={{
-							backgroundColor: 'yellow',
+							backgroundColor: '#F48804',
 							color: 'black',
 							fontSize: '25px',
 							padding: '10px 20px',
 							border: 'none',
 							borderRadius: '5px',
 						}}>
+						{/* Button's text changes depending on whether the artwork was added or not to favorites */}
 						{isFavorite
 							? 'Added to Community Favorites'
 							: 'Add to Community Favorites'}
@@ -174,7 +178,7 @@ function ArtView() {
 					<Link to="/Gallery" style={{ display: 'block', margin: '40px 0' }}>
 						<button
 							style={{
-								backgroundColor: '#EC9704',
+								backgroundColor: '#DB4627',
 								color: 'black',
 								fontSize: '25px',
 								padding: '10px 20px',

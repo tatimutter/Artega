@@ -8,7 +8,7 @@
 	position: bottom;
 	bottom: 0;
 	width: 100%;
-	font-size: 40px;
+	font-size: 0.1rem;
 }
 
 .social-icons {
@@ -31,7 +31,7 @@
 
 .social-icons p {
 	margin-left: 10px;
-	font-size: 30px;
+	font-size: 1.3rem;
 	align-items: center;
 	display: flex;
 	margin-bottom: -16px;

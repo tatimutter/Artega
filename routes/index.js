@@ -70,7 +70,4 @@ router.delete('/favorites/:objectNumber', function (req, res) {
 		.catch((err) => res.status(500).send(err));
 });
 
-/* router.listen(5002, function () {
-	console.log('CORS-enabled web server listening on port 5002');
-}); */
 module.exports = router;

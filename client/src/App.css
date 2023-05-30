@@ -10,3 +10,14 @@ img {
 	width: 95px;
 	height: 80px;
 }
+
+.intro {
+	background-color: #cccccc;
+	color: #333;
+	padding: 20px;
+	font-size: 24px;
+	line-height: 1.5;
+	text-align: center;
+	margin-bottom: 40px;
+	width: 100%;
+}

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './VideoTour.css';
-import { FiVolume2, FiVolumeX } from 'react-icons/fi';
+import { FiVolume2 } from 'react-icons/fi';
 
 function VideoTour() {
 	const introduction =
@@ -11,7 +11,7 @@ function VideoTour() {
 
 	const toggleReading = () => {
 		if (!isReading) {
-			// Create a new SpeechSynthesisUtterance object and speak the description
+			// Create a new SpeechSynthesisUtterance object and speak the description - 1st collection
 			const speech = new SpeechSynthesisUtterance(introduction);
 			speech.lang = 'en-US';
 			setIsReading(true);
@@ -25,7 +25,7 @@ function VideoTour() {
 	};
 	const toggleReading1 = () => {
 		if (!isReading) {
-			// Create a new SpeechSynthesisUtterance object and speak the description
+			// Create a new SpeechSynthesisUtterance object and speak the description - 2nd collection
 			const speech = new SpeechSynthesisUtterance(introText);
 			speech.lang = 'en-US';
 			setIsReading(true);
@@ -58,6 +58,7 @@ function VideoTour() {
 							borderRadius: '5px',
 							background: isReading ? 'red' : '#F7C815',
 						}}
+						/* Button's text changes depending on whether the text is being read out loud or not */
 						onClick={toggleReading1}>
 						{isReading ? 'Stop Reading' : 'Click to hear this text'}
 						<FiVolume2 className="TSS-icon" />
