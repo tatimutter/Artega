@@ -69,11 +69,12 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Additional Packages
 
+- [CORS](https://expressjs.com/en/resources/middleware/cors.html)
+- [react-bootstrap](https://react-bootstrap.github.io/)
+- [react-icons](https://www.npmjs.com/package/react-icons)
+- [react-responsive-masonry](https://www.npmjs.com/package/react-responsive-masonry)
 - [react-router-dom](https://www.geeksforgeeks.org/what-is-react-router-dom/)
 - [react-splide](https://splidejs.com/integration/react-splide/)
-- [react-responsive-masonry](https://www.npmjs.com/package/react-responsive-masonry)
-- [react-icons](https://www.npmjs.com/package/react-icons)
-- [CORS](https://expressjs.com/en/resources/middleware/cors.html)
 
 ## Database Prep
 

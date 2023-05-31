@@ -3,7 +3,9 @@ import { NavLink } from 'react-router-dom';
 import './NavBar.css';
 import { FiHome, FiVideo, FiImage, FiHeart } from 'react-icons/fi';
 
-import image from './logo-color.jpg';
+import Dropdown from 'react-bootstrap/Dropdown';
+
+import image from '../images/logo-color.png';
 
 function NavBar() {
 	/* const showButton = () => {
@@ -20,12 +22,23 @@ function NavBar() {
 						<span className="nav-text">Home</span>
 					</NavLink>
 				</li>
-				{/* <li>
-					<NavLink to="/Gallery" className="nav-link">
-						<FiImage className="nav-icon" />
-						<span className="nav-text">Gallery</span>
-					</NavLink>
-				</li> */}
+				<li>
+					<Dropdown>
+						<Dropdown.Toggle as={NavLink} variant="success" id="dropdown-basic">
+							<FiImage className="nav-icon" /> <br />
+							<span className="nav-text">Collections</span>
+						</Dropdown.Toggle>
+
+						<Dropdown.Menu className="dropdown-menu">
+							<Dropdown.Item href="/Gallery" className="nav-link">
+								<span className="dropdown-nav-text">Rijksmuseum</span>
+							</Dropdown.Item>
+							<Dropdown.Item href="/Gallery" className="nav-link">
+								<span className="dropdown-nav-text">WCMA</span>
+							</Dropdown.Item>
+						</Dropdown.Menu>
+					</Dropdown>
+				</li>
 				<li>
 					<NavLink to="/VideoTour" className="nav-link">
 						<FiVideo className="nav-icon" />

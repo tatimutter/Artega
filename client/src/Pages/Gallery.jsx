@@ -4,6 +4,7 @@ import './Gallery.css';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import { FiVolume2, FiVolumeX } from 'react-icons/fi';
 import { ImEyePlus } from 'react-icons/im';
+import TtsButton from '../Components/TtsButton';
 
 const apiKey = process.env.REACT_APP_API_KEY;
 const apiUrl = `https://www.rijksmuseum.nl/api/en/collection?key=${apiKey}&hasImage=true&p=10.000&ps=100`;
@@ -12,25 +13,8 @@ function Gallery() {
 	const [collection, setCollection] = useState();
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState(false);
-	const [isSpeaking, setIsSpeaking] = useState(false); // Setting state for whether intro is being spoken or not
 	const introText =
 		"The Rijksmuseum in Amsterdam is one of the most renowned museums in the world! Founded in 1800, this museum is dedicated to preserving and showcasing the rich artistic and cultural heritage of the Netherlands, from the Middle Ages to modern times. With over 8,000 objects on display, including masterpieces by famous Dutch artists like Rembrandt, Vermeer, and Van Gogh, the Rijksmuseum offers visitors an unparalleled glimpse into the country's history, culture, and artistic achievements. Join us on this virtual tour and explore the museum's stunning collections and fascinating stories from the comfort of your own home.";
-	const speakIntro = () => {
-		// Function to speak the intro text using the SpeechSynthesis API
-		const synth = window.speechSynthesis;
-		const introUtterance = new SpeechSynthesisUtterance(introText);
-		introUtterance.onend = () => {
-			setIsSpeaking(false); // Set isSpeaking state to false when intro stops being read out loud
-		};
-		setIsSpeaking(true); // Set isSpeaking state to true while intro is read out loud
-		synth.speak(introUtterance);
-	};
-
-	const stopReading = () => {
-		const synth = window.speechSynthesis;
-		synth.cancel();
-		setIsSpeaking(false);
-	};
 
 	//Hook to populate the collection when the page loads
 	useEffect(() => {
@@ -71,37 +55,7 @@ function Gallery() {
 
 				<div className="intro">
 					<p>{introText}</p> {/* Intro text to be spoken */}
-					<button
-						style={{
-							backgroundColor: '#F7C815',
-							color: 'black',
-							fontSize: '25px',
-							padding: '10px 20px',
-							border: 'none',
-							borderRadius: '5px',
-							marginBottom: '20px',
-						}}
-						onClick={speakIntro}
-						disabled={isSpeaking} /*Disable button while speaking is ongoing*/
-					>
-						{isSpeaking ? 'Speaking...' : 'Click to hear this text'}{' '}
-						{/* Button's text changes depending on reading action */}
-						<FiVolume2 className="TSS-icon" />
-					</button>
-					{isSpeaking && (
-						<button
-							style={{
-								backgroundColor: 'red',
-								color: 'black',
-								fontSize: '25px',
-								padding: '10px 20px',
-								border: 'none',
-								borderRadius: '5px',
-							}}
-							onClick={stopReading}>
-							Stop Audio <FiVolumeX className="TSS-icon" />
-						</button>
-					)}
+					<TtsButton text={introText} />
 				</div>
 				<div className="collection-div">
 					{collection && (

@@ -4,6 +4,7 @@ import { Splide, SplideSlide } from '@splidejs/react-splide'; // Importing Splid
 import '@splidejs/splide/dist/css/themes/splide-default.min.css'; // Importing default styling for Splide slider
 import './Home.css';
 import { FiVolume2, FiVolumeX } from 'react-icons/fi';
+import TtsButton from '../Components/TtsButton';
 
 function Home() {
 	const [isSpeaking, setIsSpeaking] = useState(false); // Setting state for whether intro is being spoken or not
@@ -31,23 +32,6 @@ function Home() {
 		arrows: true, // Whether to show arrow buttons to navigate between slides
 	};
 
-	// Function to speak the intro text using the SpeechSynthesis API
-	const speakIntro = () => {
-		const synth = window.speechSynthesis;
-		const introUtterance = new SpeechSynthesisUtterance(introText);
-		introUtterance.onend = () => {
-			setIsSpeaking(false); // Set isSpeaking state to false when intro is finished speaking
-		};
-		setIsSpeaking(true); // Set isSpeaking state to true while intro is speaking
-		synth.speak(introUtterance);
-	};
-
-	const stopReading = () => {
-		const synth = window.speechSynthesis;
-		synth.cancel();
-		setIsSpeaking(false);
-	};
-
 	return (
 		<div>
 			<div className="home-container container py-5">
@@ -55,7 +39,8 @@ function Home() {
 				<div className="intro">
 					<p>{introText}</p>
 
-					<button
+					<TtsButton text={introText} />
+					{/* <button
 						style={{
 							backgroundColor: '#F7C815',
 							color: 'black',
@@ -68,9 +53,9 @@ function Home() {
 						onClick={speakIntro}
 						disabled={isSpeaking}>
 						{/* Button's text changes depending on whether the artwork was added or not to favorites */}
-						{isSpeaking ? 'Speaking...' : 'Click to hear this text'}
+					{/*{isSpeaking ? 'Speaking...' : 'Click to hear this text'}
 						<FiVolume2 className="TSS-icon" />
-					</button>
+					</button> */}
 
 					{isSpeaking && (
 						<button
@@ -82,7 +67,8 @@ function Home() {
 								border: 'none',
 								borderRadius: '5px',
 							}}
-							onClick={stopReading}>
+							//onClick={stopReading}
+						>
 							Stop Audio <FiVolumeX className="TSS-icon" />
 						</button>
 					)}

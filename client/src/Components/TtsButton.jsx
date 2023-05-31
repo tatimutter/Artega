@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FiVolume2 } from 'react-icons/fi';
+import { FiVolume2, FiVolumeX } from 'react-icons/fi';
 
 function TtsButton({ text }) {
 	// Function to toggle whether the description is being read out loud
@@ -29,11 +29,15 @@ function TtsButton({ text }) {
 				padding: '10px 20px',
 				border: 'none',
 				borderRadius: '5px',
-				background: isReading ? 'red' : '#F7C815',
+				background: isReading ? '#FF0000' : '#F7C815',
 			}}
 			onClick={toggleReading}>
 			{isReading ? 'Stop Audio' : 'Click to hear this text'}{' '}
-			<FiVolume2 className="TSS-icon" />
+			{isReading ? (
+				<FiVolumeX className="TSS-icon" />
+			) : (
+				<FiVolume2 className="TSS-icon" />
+			)}
 		</button>
 	);
 }
